@@ -7,3 +7,7 @@
 
 runpod~=1.7.0
 huggingface_hub
+typing-extensions==4.7.1
+pydantic
+pydantic-settings
+hf-transfer
