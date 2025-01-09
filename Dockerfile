@@ -1,24 +1,35 @@
-FROM nvidia/cuda:12.1.0-base-ubuntu22.04 
-
-RUN apt-get update -y \
-    && apt-get install -y python3-pip
+# FROM nvidia/cuda:12.1.0-base-ubuntu22.04 
 
 
+# RUN ldconfig /usr/local/cuda-12.1/compat/
 
-# The base image comes with many system dependencies pre-installed to help you get started quickly.
-# Please refer to the base image's Dockerfile for more information before adding additional dependencies.
-# IMPORTANT: The base image overrides the default huggingface cache location.
-# Python dependencies
+
+# # # Set CUDA environment variables
+# ENV PATH="/usr/local/cuda/bin:${PATH}"
+# ENV LD_LIBRARY_PATH="/usr/local/cuda/lib64:${LD_LIBRARY_PATH}"
+
+# RUN apt-get update -y \
+#     && apt-get install -y python3-pip git
+
+
+
+# # The base image comes with many system dependencies pre-installed to help you get started quickly.
+# # Please refer to the base image's Dockerfile for more information before adding additional dependencies.
+# # IMPORTANT: The base image overrides the default huggingface cache location.
+# # Python dependencies
+FROM axolotlai/axolotl-cloud:main-latest
+
 COPY builder/requirements.txt /requirements.txt
-RUN python3.11 -m pip install --upgrade pip && \
-    python3.11 -m pip install --upgrade -r /requirements.txt --no-cache-dir && \
-    rm /requirements.txt
+RUN --mount=type=cache,target=/root/.cache/pip \
+    python3 -m pip install --upgrade pip && \
+    python3 -m pip install --upgrade -r /requirements.txt
 
+# RUN pip install --upgrade torch --index-url https://download.pytorch.org/whl/cu121
     
-RUN git clone https://github.com/runpod-workers/axolotl.git && \
-    cd axolotl && \
-    pip3 install packaging ninja && \
-    pip3 install --no-build-isolation -e '.[flash-attn,deepspeed]'
+# RUN git clone https://github.com/runpod-workers/axolotl.git && \
+#     cd axolotl && \
+#     pip install packaging ninja && \
+#     pip install --no-build-isolation -e '.[flash-attn,deepspeed]'
 
 
 
@@ -31,6 +42,6 @@ ENV TRANSFORMERS_CACHE="${BASE_VOLUME}/huggingface-cache/hub"
 
 
 # Add src files (Worker Template)
-ADD src .
+COPY src /src
 
-CMD python3.11 -u /handler.py
+CMD ["python3", "/src/handler.py"]
