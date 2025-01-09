@@ -79,6 +79,9 @@ json
   }
 }
 
+### Errors: 
+- if you face any issues with the Flash Attention-2, Delete yoor worker and Re-start.
+
 
 
 
