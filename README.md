@@ -221,7 +221,8 @@ datasets:
 | `ddp_broadcast_buffers` | `null` | DDP broadcast buffers |
 
 
-### Example Configuration
+<details>
+<summary><h3>Example Configuration Request:</h3></summary>
 
 Here's a complete example for fine-tuning a LLaMA model using LoRA:
 
@@ -296,6 +297,7 @@ Here's a complete example for fine-tuning a LLaMA model using LoRA:
   }
 }
 ```
+</details>
 
 ### Advanced Features
 
