@@ -2,11 +2,13 @@
 
 <h1>LLM Training- Full finetune, LoRA, QLoRa etc. Llama/Mistral/Gemma</h1>
 
+## RunPod Worker Images
 
-### Docker Dev Image: 
-Please use this image for Dev/Testing purpose.
+Below is a summary of the available RunPod Worker images, categorized by image stability and CUDA version compatibility.
 
-`runpod/llm-finetuning:dev`
+| Preview Image Tag                  | Development Image Tag             |
+-----------------------------------|-----------------------------------|
+| `runpod/llm-finetuning:preview` | `runpod/llm-finetuning:dev` 
 
 # Configuration Options
 
