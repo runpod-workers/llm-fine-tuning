@@ -49,7 +49,7 @@ You can use these configuration Options:
 | `tokenizer_config` | Custom tokenizer configuration path | Optional |
 | `model_type` | Type of model to load | AutoModelForCausalLM |
 | `tokenizer_type` | Type of tokenizer to use | AutoTokenizer |
-| `hub_model_id` | Type of tokenizer to use | AutoTokenizer |
+| `hub_model_id` | Repository ID where the model will be pushed on Hugging Face Hub (format: username/repo-name) | Optional |
 
 
 
