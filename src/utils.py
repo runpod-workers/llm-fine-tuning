@@ -1,6 +1,6 @@
 import os 
 import yaml 
-
+from .configure import DEFAULT_CONFIG_PATH
 
 
 def validate_env(logger, rp_job_id):
@@ -19,21 +19,6 @@ def get_output_dir(run_id):
     return path
 
 
-
-# def make_valid_config(input_args):
-#     """
-#     Currently limited by all possible axolotl args, no defaults
-#     :param input_args: dict of input args
-#     """
-#     all_args = yaml.safe_load(open("config/config.yaml", "r"))
-#     if not input_args:
-#         print("No args provided, using defaults")
-#     else:
-#         all_args.update(input_args)
-#     return all_args
-
-
-
 def make_valid_config(input_args):
     """
     Creates and saves updated config file, returns the path to the new config
@@ -41,7 +26,7 @@ def make_valid_config(input_args):
     :return: str, path to the updated config file
     """
     # Load default config
-    all_args = yaml.safe_load(open("config/config.yaml", "r"))
+    all_args = yaml.safe_load(open(DEFAULT_CONFIG_PATH, "r"))
     
     if not input_args:
         print("No args provided, using defaults")

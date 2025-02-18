@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo "🔧 Configuring..."
+python3 /src/configure.py
 
 if [ -n "$HF_TOKEN" ]; then
     echo "🔑 Logging in to Hugging Face..."
