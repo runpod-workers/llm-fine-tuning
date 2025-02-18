@@ -44,4 +44,7 @@ ENV TRANSFORMERS_CACHE="${BASE_VOLUME}/huggingface-cache/hub"
 # Add src files (Worker Template)
 COPY src /src
 
+RUN chmod +x /setup.sh
+ENTRYPOINT ["/setup.sh"]
+
 CMD ["python3", "/src/handler.py"]

@@ -27,7 +27,6 @@ You can use these configuration Options:
     "run_id": "run-id",
     "credentials": {
       "wandb_api_key": "", # add your Weights & biases key. TODO:  you will be able to set this in Enviornment variables.
-      "hf_token": "", # add your HF_token. TODO:  you will be able to set this in Enviornment variables.
     },
     "args": {
       "base_model": "NousResearch/Llama-3.2-1B",

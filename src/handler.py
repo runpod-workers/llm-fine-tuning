@@ -2,7 +2,6 @@ import runpod
 import os
 from train import train
 from utils import make_valid_config, get_output_dir, validate_env, set_config_env_vars
-from huggingface_hub._login import login
 import yaml
 
 BASE_VOLUME = os.environ.get("BASE_VOLUME", "/runpod-volume")
@@ -39,10 +38,8 @@ async def handler(job):
     # Handle credentials
     credentials = inputs["credentials"]
     os.environ["WANDB_API_KEY"] = credentials["wandb_api_key"]
-    os.environ["HF_TOKEN"] = credentials["hf_token"]
     
     validate_env(logger, runpod_job_id)
-    login(token=os.environ["HF_TOKEN"])
     
     logger.info(f"Starting Training.")
     async for result in train(config_path):  # Pass the config path instead of args
@@ -51,7 +48,6 @@ async def handler(job):
     
     # Cleanup
     del os.environ["WANDB_API_KEY"]
-    del os.environ["HF_TOKEN"]
 
 
 

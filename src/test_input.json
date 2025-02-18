@@ -4,8 +4,7 @@
       "model_id": "llama-test",
       "run_id": "",
       "credentials": {
-        "wandb_api_key": "",
-        "hf_token": ""
+        "wandb_api_key": ""
       },
       "args": {
         "base_model": "NousResearch/Meta-Llama-3-8B",

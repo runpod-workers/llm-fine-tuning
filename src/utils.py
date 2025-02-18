@@ -4,7 +4,7 @@ import yaml
 
 
 def validate_env(logger, rp_job_id):
-    vars =  ["WANDB_API_KEY", "HF_TOKEN"]
+    vars =  ["WANDB_API_KEY",]
     
     for key in vars:
         if key not in os.environ:
