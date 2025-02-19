@@ -1,0 +1,216 @@
+base_model: ${BASE_MODEL}
+base_model_ignore_patterns: ${BASE_MODEL_IGNORE_PATTERNS}
+base_model_config: ${BASE_MODEL_CONFIG}
+revision_of_model: ${REVISION_OF_MODEL}
+tokenizer_config: ${TOKENIZER_CONFIG}
+model_type: ${MODEL_TYPE}
+tokenizer_type: ${TOKENIZER_TYPE}
+trust_remote_code: ${TRUST_REMOTE_CODE}
+tokenizer_use_fast: ${TOKENIZER_USE_FAST}
+tokenizer_legacy: ${TOKENIZER_LEGACY}
+resize_token_embeddings_to_32x: ${RESIZE_TOKEN_EMBEDDINGS_TO_32X}
+
+is_falcon_derived_model: ${IS_FALCON_DERIVED_MODEL}
+is_llama_derived_model: ${IS_LLAMA_DERIVED_MODEL}
+is_qwen_derived_model: ${IS_QWEN_DERIVED_MODEL}
+is_mistral_derived_model: ${IS_MISTRAL_DERIVED_MODEL}
+
+overrides_of_model_config:
+  rope_scaling:
+    type: ${ROPE_SCALING_TYPE}
+    factor: ${ROPE_SCALING_FACTOR}
+
+bnb_config_kwargs:
+  llm_int8_has_fp16_weight: ${BNB_LLM_INT8_HAS_FP16_WEIGHT}
+  bnb_4bit_quant_type: ${BNB_4BIT_QUANT_TYPE}
+  bnb_4bit_use_double_quant: ${BNB_4BIT_USE_DOUBLE_QUANT}
+
+gptq: ${GPTQ}
+load_in_8bit: ${LOAD_IN_8BIT}
+load_in_4bit: ${LOAD_IN_4BIT}
+bf16: ${BF16}
+fp16: ${FP16}
+tf32: ${TF32}
+bfloat16: ${BFLOAT16}
+float16: ${FLOAT16}
+
+gpu_memory_limit: ${GPU_MEMORY_LIMIT}
+lora_on_cpu: ${LORA_ON_CPU}
+
+datasets:
+  - path: ${DATASET_PATH}
+    type: ${DATASET_TYPE}
+    ds_type: ${DATASET_DS_TYPE}
+    data_files: ${DATASET_DATA_FILES}
+    shards: ${DATASET_SHARDS}
+    name: ${DATASET_NAME}
+    train_on_split: ${DATASET_TRAIN_ON_SPLIT}
+    revision: ${DATASET_REVISION}
+    trust_remote_code: ${DATASET_TRUST_REMOTE_CODE}
+
+rl: ${RL}
+dpo_use_weighting: ${DPO_USE_WEIGHTING}
+
+chat_template: ${CHAT_TEMPLATE}
+chat_template_jinja: ${CHAT_TEMPLATE_JINJA}
+default_system_message: ${DEFAULT_SYSTEM_MESSAGE}
+dataset_prepared_path: ${DATASET_PREPARED_PATH}
+push_dataset_to_hub: ${PUSH_DATASET_TO_HUB}
+dataset_processes: ${DATASET_PROCESSES}
+dataset_keep_in_memory: ${DATASET_KEEP_IN_MEMORY}
+hub_model_id: ${HUB_MODEL_ID}
+hub_strategy: ${HUB_STRATEGY}
+hf_use_auth_token: ${HF_USE_AUTH_TOKEN}
+val_set_size: ${VAL_SET_SIZE}
+dataset_shard_num: ${DATASET_SHARD_NUM}
+dataset_shard_idx: ${DATASET_SHARD_IDX}
+
+sequence_len: ${SEQUENCE_LEN}
+pad_to_sequence_len: ${PAD_TO_SEQUENCE_LEN}
+sample_packing: ${SAMPLE_PACKING}
+eval_sample_packing: ${EVAL_SAMPLE_PACKING}
+sample_packing_eff_est: ${SAMPLE_PACKING_EFF_EST}
+total_num_tokens: ${TOTAL_NUM_TOKENS}
+sample_packing_group_size: ${SAMPLE_PACKING_GROUP_SIZE}
+sample_packing_bin_size: ${SAMPLE_PACKING_BIN_SIZE}
+
+batch_flattening: ${BATCH_FLATTENING}
+device_map: ${DEVICE_MAP}
+max_memory: ${MAX_MEMORY}
+
+adapter: ${ADAPTER}
+lora_model_dir: ${LORA_MODEL_DIR}
+
+lora_r: ${LORA_R}
+lora_alpha: ${LORA_ALPHA}
+lora_dropout: ${LORA_DROPOUT}
+lora_target_modules:
+  - ${LORA_TARGET_MODULES}
+lora_target_linear: ${LORA_TARGET_LINEAR}
+peft_layers_to_transform: ${PEFT_LAYERS_TO_TRANSFORM}
+lora_modules_to_save: ${LORA_MODULES_TO_SAVE}
+lora_fan_in_fan_out: ${LORA_FAN_IN_FAN_OUT}
+
+loraplus_lr_ratio: ${LORAPLUS_LR_RATIO}
+loraplus_lr_embedding: ${LORAPLUS_LR_EMBEDDING}
+
+peft:
+  loftq_config:
+    loftq_bits: ${LOFTQ_BITS}
+
+relora_steps: ${RELORA_STEPS}
+relora_warmup_steps: ${RELORA_WARMUP_STEPS}
+relora_anneal_steps: ${RELORA_ANNEAL_STEPS}
+relora_prune_ratio: ${RELORA_PRUNE_RATIO}
+relora_cpu_offload: ${RELORA_CPU_OFFLOAD}
+
+wandb_mode: ${WANDB_MODE}
+wandb_project: ${WANDB_PROJECT}
+wandb_entity: ${WANDB_ENTITY}
+wandb_watch: ${WANDB_WATCH}
+wandb_name: ${WANDB_NAME}
+wandb_run_id: ${WANDB_RUN_ID}
+wandb_log_model: ${WANDB_LOG_MODEL}
+
+mlflow_tracking_uri: ${MLFLOW_TRACKING_URI}
+mlflow_experiment_name: ${MLFLOW_EXPERIMENT_NAME}
+mlflow_run_name: ${MLFLOW_RUN_NAME}
+hf_mlflow_log_artifacts: ${HF_MLFLOW_LOG_ARTIFACTS}
+
+use_comet: ${USE_COMET}
+comet_api_key: ${COMET_API_KEY}
+comet_workspace: ${COMET_WORKSPACE}
+comet_project_name: ${COMET_PROJECT_NAME}
+comet_experiment_key: ${COMET_EXPERIMENT_KEY}
+comet_mode: ${COMET_MODE}
+comet_online: ${COMET_ONLINE}
+comet_experiment_config: ${COMET_EXPERIMENT_CONFIG}
+
+output_dir: ${OUTPUT_DIR}
+
+torch_compile: ${TORCH_COMPILE}
+torch_compile_backend: ${TORCH_COMPILE_BACKEND}
+
+gradient_accumulation_steps: ${GRADIENT_ACCUMULATION_STEPS}
+micro_batch_size: ${MICRO_BATCH_SIZE}
+eval_batch_size: ${EVAL_BATCH_SIZE}
+num_epochs: ${NUM_EPOCHS}
+warmup_steps: ${WARMUP_STEPS}
+warmup_ratio: ${WARMUP_RATIO}
+learning_rate: ${LEARNING_RATE}
+lr_quadratic_warmup: ${LR_QUADRATIC_WARMUP}
+logging_steps: ${LOGGING_STEPS}
+eval_steps: ${EVAL_STEPS}
+evals_per_epoch: ${EVALS_PER_EPOCH}
+save_strategy: ${SAVE_STRATEGY}
+save_steps: ${SAVE_STEPS}
+saves_per_epoch: ${SAVES_PER_EPOCH}
+save_total_limit: ${SAVE_TOTAL_LIMIT}
+max_steps: ${MAX_STEPS}
+
+eval_table_size: ${EVAL_TABLE_SIZE}
+eval_max_new_tokens: ${EVAL_MAX_NEW_TOKENS}
+eval_causal_lm_metrics: ${EVAL_CAUSAL_LM_METRICS}
+
+profiler_steps: ${PROFILER_STEPS}
+loss_watchdog_threshold: ${LOSS_WATCHDOG_THRESHOLD}
+loss_watchdog_patience: ${LOSS_WATCHDOG_PATIENCE}
+
+save_safetensors: ${SAVE_SAFETENSORS}
+train_on_inputs: ${TRAIN_ON_INPUTS}
+group_by_length: ${GROUP_BY_LENGTH}
+gradient_checkpointing: ${GRADIENT_CHECKPOINTING}
+early_stopping_patience: ${EARLY_STOPPING_PATIENCE}
+
+lr_scheduler: ${LR_SCHEDULER}
+lr_scheduler_kwargs: ${LR_SCHEDULER_KWARGS}
+cosine_min_lr_ratio: ${COSINE_MIN_LR_RATIO}
+cosine_constant_lr_ratio: ${COSINE_CONSTANT_LR_RATIO}
+lr_div_factor: ${LR_DIV_FACTOR}
+
+optimizer: ${OPTIMIZER}
+optim_args: ${OPTIM_ARGS}
+optim_target_modules: ${OPTIM_TARGET_MODULES}
+weight_decay: ${WEIGHT_DECAY}
+adam_beta1: ${ADAM_BETA1}
+adam_beta2: ${ADAM_BETA2}
+adam_epsilon: ${ADAM_EPSILON}
+max_grad_norm: ${MAX_GRAD_NORM}
+
+neftune_noise_alpha: ${NEFTUNE_NOISE_ALPHA}
+
+flash_optimum: ${FLASH_OPTIMUM}
+xformers_attention: ${XFORMERS_ATTENTION}
+flash_attention: ${FLASH_ATTENTION}
+flash_attn_cross_entropy: ${FLASH_ATTN_CROSS_ENTROPY}
+flash_attn_rms_norm: ${FLASH_ATTN_RMS_NORM}
+flash_attn_fuse_qkv: ${FLASH_ATTN_FUSE_QKV}
+flash_attn_fuse_mlp: ${FLASH_ATTN_FUSE_MLP}
+sdp_attention: ${SDP_ATTENTION}
+s2_attention: ${S2_ATTENTION}
+resume_from_checkpoint: ${RESUME_FROM_CHECKPOINT}
+auto_resume_from_checkpoints: ${AUTO_RESUME_FROM_CHECKPOINTS}
+
+local_rank: ${LOCAL_RANK}
+
+special_tokens:
+  bos_token: ${SPECIAL_TOKEN_BOS}
+  eos_token: ${SPECIAL_TOKEN_EOS}
+  unk_token: ${SPECIAL_TOKEN_UNK}
+  pad_token: ${SPECIAL_TOKEN_PAD}
+
+tokens: ${TOKENS}
+
+fsdp: ${FSDP}
+fsdp_config: ${FSDP_CONFIG}
+deepspeed: ${DEEPSPEED}
+
+ddp_timeout: ${DDP_TIMEOUT}
+ddp_bucket_cap_mb: ${DDP_BUCKET_CAP_MB}
+ddp_broadcast_buffers: ${DDP_BROADCAST_BUFFERS}
+
+torchdistx_path: ${TORCHDISTX_PATH}
+pretraining_dataset: ${PRETRAINING_DATASET}
+debug: ${DEBUG}
+seed: ${SEED}
+strict: ${STRICT}

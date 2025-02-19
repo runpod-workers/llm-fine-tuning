@@ -1,6 +1,6 @@
 import os 
 import yaml 
-from .configure import DEFAULT_CONFIG_PATH
+from src.configure import DEFAULT_CONFIG_PATH
 
 
 def validate_env(logger, rp_job_id):

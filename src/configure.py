@@ -20,7 +20,7 @@ AXOLOTL_SPECIAL_TOKENS = '{"pad_token": "<|end_of_text|>"}'
 [Usage]
 ```
 try:
-    template_path = "config/config_template.yaml"
+    template_path = "config/template_minimum.yaml"
     output_path = "config/default_config.yaml"
 
     config = load_config_with_overrides(template_path)
@@ -35,7 +35,6 @@ except Exception as e:
 ```
 """
 
-CONFIG_TEMPLATE_PATH = "config/config_template.yaml"
 DEFAULT_CONFIG_PATH = "config/default_config.yaml"
 
 
