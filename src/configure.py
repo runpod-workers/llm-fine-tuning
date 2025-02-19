@@ -13,7 +13,7 @@ AXOLOTL_LOAD_IN_8BIT = false,
 AXOLOTL_LOAD_IN_4BIT = false,
 AXOLOTL_STRICT = false,
 AXOLOTL_DATASETS = '[{"path": "teknium/GPT4-LLM-Cleaned","type": "alpaca"}]',
-AXOLOTL_LORA_TARGET_MODULES = ["gate_proj","down_proj","up_proj","q_proj","v_proj","k_proj","o_proj"],
+AXOLOTL_LORA_TARGET_MODULES = '["gate_proj","down_proj","up_proj","q_proj","v_proj","k_proj","o_proj"]',
 AXOLOTL_HUB_MODEL_ID = "runpod/llama-fr-lora",
 AXOLOTL_SPECIAL_TOKENS = '{"pad_token": "<|end_of_text|>"}'
 
