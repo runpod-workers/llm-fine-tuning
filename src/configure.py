@@ -35,6 +35,7 @@ except Exception as e:
 ```
 """
 
+CONFIG_TEMPLATE_PATH = "config/template_minimum.yaml"
 DEFAULT_CONFIG_PATH = "config/default_config.yaml"
 
 
@@ -75,7 +76,7 @@ def load_config_with_overrides(
         AxolotlInputConfig object with merged configuration
     """
     # Load base config from YAML
-    with open(config_path, "r") as f:
+    with open(os.path.join(os.path.dirname(__file__), config_path), "r") as f:
         config_dict = yaml.safe_load(f)
 
     # Get all fields from the Pydantic model
@@ -102,8 +103,8 @@ def save_config(config: AxolotlInputConfig, output_path: str) -> None:
         os.makedirs(output_dir, exist_ok=True)
 
     # Save to YAML
-    with open(output_path, "w") as f:
-        yaml.dump(config_dict, f, sort_keys=False, default_flow_style=False)
+    with open(os.path.join(os.path.dirname(__file__), output_path), "w") as f:
+        yaml.dump(config_dict, f, sort_keys=True, default_flow_style=False)
 
 
 if __name__ == "__main__":
@@ -115,8 +116,8 @@ if __name__ == "__main__":
 
         save_config(config, output_path)
 
-        print(f"Configuration saved to: {output_path}")
+        print(f"✅ Configuration saved to: {output_path}")
 
     except Exception as e:
-        print(f"Error processing configuration: {str(e)}")
+        print(f"❌ Error processing configuration: {str(e)}")
         raise
