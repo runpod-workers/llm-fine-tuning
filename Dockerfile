@@ -44,6 +44,8 @@ ENV TRANSFORMERS_CACHE="${BASE_VOLUME}/huggingface-cache/hub"
 # Add src files (Worker Template)
 COPY src /src
 
+# Entrypoint
+COPY builder/setup.sh /setup.sh
 RUN chmod +x /setup.sh
 ENTRYPOINT ["/setup.sh"]
 
