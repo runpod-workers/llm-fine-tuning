@@ -4,6 +4,9 @@ COPY builder/requirements.txt /requirements.txt
 RUN --mount=type=cache,target=/root/.cache/pip \
     python3 -m pip install --upgrade pip && \
     python3 -m pip install --upgrade -r /requirements.txt
+WORKDIR /workspace/data/finetuning
+
+COPY builder/requirements.txt .
 
 # Environment settings
 ARG BASE_VOLUME="/runpod-volume"
@@ -15,9 +18,8 @@ ENV TRANSFORMERS_CACHE="${BASE_VOLUME}/huggingface-cache/hub"
 # Add src files (Worker Template)
 COPY src /src
 
-# Entrypoint
-COPY builder/setup.sh /setup.sh
-RUN chmod +x /setup.sh
-ENTRYPOINT ["/setup.sh"]
+COPY src .
 
 CMD ["python3", "/src/handler.py"]
+RUN chmod +x ./entrypoint.sh
+ENTRYPOINT ["./entrypoint.sh"]

@@ -98,25 +98,24 @@ def save_config(config: AxolotlInputConfig, output_path: str) -> None:
     # Convert to dict and remove null values
     config_dict = config.model_dump(exclude_none=True)
 
+    # Determine absolute file path
+    output_path = os.path.join(os.path.dirname(__file__), output_path)
+
     # Ensure output directory exists
     if output_dir := os.path.dirname(output_path):
         os.makedirs(output_dir, exist_ok=True)
 
     # Save to YAML
-    with open(os.path.join(os.path.dirname(__file__), output_path), "w") as f:
+    with open(output_path, "w") as f:
         yaml.dump(config_dict, f, sort_keys=True, default_flow_style=False)
+
+    print(f"✅ Configuration saved to: {output_path}")
 
 
 if __name__ == "__main__":
     try:
-        template_path = CONFIG_TEMPLATE_PATH
-        output_path = DEFAULT_CONFIG_PATH
-
-        config = load_config_with_overrides(template_path)
-
-        save_config(config, output_path)
-
-        print(f"✅ Configuration saved to: {output_path}")
+        config = load_config_with_overrides(CONFIG_TEMPLATE_PATH)
+        save_config(config, DEFAULT_CONFIG_PATH)
 
     except Exception as e:
         print(f"❌ Error processing configuration: {str(e)}")
