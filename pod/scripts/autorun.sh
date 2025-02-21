@@ -13,3 +13,9 @@ else
     echo "⚠️ Warning: HF_TOKEN is not set. Skipping Hugging Face login."
 fi
 
+echo "⌛ Preparing..."
+if ! python3 configure.py --template config_template.yaml --output config.yaml; then
+    echo "❌ Configuration failed!"
+    sleep infinity  # Keeps the container running for inspection
+fi
+
