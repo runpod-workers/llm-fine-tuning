@@ -19,3 +19,8 @@ if ! python3 configure.py --template config_template.yaml --output config.yaml; 
     sleep infinity  # Keeps the container running for inspection
 fi
 
+echo "🚀 Training..."
+axolotl train config.yaml || { echo "❌ Training failed. Exiting."; sleep infinity; }
+
+echo "✅ Training complete. Keeping container alive..."
+sleep infinity
