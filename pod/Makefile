@@ -5,20 +5,23 @@ help:
 
 
 setup: ## setup local virtual environment
+	cd scripts && \
 	python3.11 -m venv venv && \
-	. venv/bin/activate && \
-	make install && \
-	chmod +x scripts/autorun.sh
+	chmod +x autorun.sh
 
 install: ## install pip libraries
+	cd scripts && \
+	. venv/bin/activate && \
 	pip install --upgrade pip && \
-	pip install -r builder/requirements.txt && \
+	pip install -r ../builder/requirements.txt && \
 	pip install axolotl --no-deps && \
 	pip install peft --no-deps && \
-	pip install -r builder/requirements-dev.txt
+	pip install -r ../builder/requirements-dev.txt
+
 
 test: ## run autorun.sh with env vars
+	cd scripts && \
+	. venv/bin/activate && \
 	AXOLOTL_BASE_MODEL=TinyLlama/TinyLlama_v1.1 && \
 	AXOLOTL_DATASETS='[{"path": "mhenrichsen/alpaca_2k_test","type": "alpaca"}]' && \
-	cd scripts && \
 	./autorun.sh
