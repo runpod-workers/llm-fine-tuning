@@ -8,26 +8,20 @@ from axolotl.utils.config.models.input.v0_4_1 import AxolotlInputConfig
 Example:
 
 [ENV VARS]
-AXOLOTL_BASE_MODEL = "NousResearch/Llama-3.2-1B",
-AXOLOTL_LOAD_IN_8BIT = false,
-AXOLOTL_LOAD_IN_4BIT = false,
-AXOLOTL_STRICT = false,
-AXOLOTL_DATASETS = '[{"path": "teknium/GPT4-LLM-Cleaned","type": "alpaca"}]',
-AXOLOTL_LORA_TARGET_MODULES = '["gate_proj","down_proj","up_proj","q_proj","v_proj","k_proj","o_proj"]',
-AXOLOTL_HUB_MODEL_ID = "runpod/llama-fr-lora",
+AXOLOTL_BASE_MODEL = "NousResearch/Llama-3.2-1B"
+AXOLOTL_LOAD_IN_8BIT = false
+AXOLOTL_LOAD_IN_4BIT = false
+AXOLOTL_STRICT = false
+AXOLOTL_DATASETS = '[{"path": "teknium/GPT4-LLM-Cleaned","type": "alpaca"}]'
+AXOLOTL_LORA_TARGET_MODULES = '["gate_proj","down_proj","up_proj","q_proj","v_proj","k_proj","o_proj"]'
+AXOLOTL_HUB_MODEL_ID = "runpod/llama-fr-lora"
 AXOLOTL_SPECIAL_TOKENS = '{"pad_token": "<|end_of_text|>"}'
 
 [Usage]
 ```
 try:
-    template_path = "config/template_minimum.yaml"
-    output_path = "config/default_config.yaml"
-
-    config = load_config_with_overrides(template_path)
-
-    save_config(config, output_path)
-
-    print(f"Configuration saved to: {output_path}")
+    config = load_config_with_overrides("template_minimum.yml")
+    save_config(config, "config.yml")
 
 except Exception as e:
     print(f"Error processing configuration: {str(e)}")
@@ -35,8 +29,8 @@ except Exception as e:
 ```
 """
 
-CONFIG_TEMPLATE_PATH = "config/template_minimum.yaml"
-DEFAULT_CONFIG_PATH = "config/default_config.yaml"
+CONFIG_TEMPLATE_PATH = "config/template_minimum.yml"
+DEFAULT_CONFIG_PATH = "config/default_config.yml"
 
 
 def parse_env_value(value: str) -> Any:
@@ -109,7 +103,7 @@ def save_config(config: AxolotlInputConfig, output_path: str) -> None:
     with open(output_path, "w") as f:
         yaml.dump(config_dict, f, sort_keys=True, default_flow_style=False)
 
-    print(f"✅ Configuration saved to: {output_path}")
+    print(f"✅  Configuration saved to: {output_path}")
 
 
 if __name__ == "__main__":
@@ -118,5 +112,5 @@ if __name__ == "__main__":
         save_config(config, DEFAULT_CONFIG_PATH)
 
     except Exception as e:
-        print(f"❌ Error processing configuration: {str(e)}")
+        print(f"❌  Error processing configuration: {str(e)}")
         raise

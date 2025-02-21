@@ -1,25 +1,16 @@
 FROM axolotlai/axolotl-cloud:main-latest
 
-COPY builder/requirements.txt /requirements.txt
-RUN --mount=type=cache,target=/root/.cache/pip \
-    python3 -m pip install --upgrade pip && \
-    python3 -m pip install --upgrade -r /requirements.txt
-WORKDIR /workspace/data/finetuning
+WORKDIR /root/finetuning
 
 COPY builder/requirements.txt .
 
-# Environment settings
-ARG BASE_VOLUME="/runpod-volume"
-ENV BASE_VOLUME=$BASE_VOLUME
-ENV HF_DATASETS_CACHE="${BASE_VOLUME}/huggingface-cache/datasets"
-ENV HUGGINGFACE_HUB_CACHE="${BASE_VOLUME}/huggingface-cache/hub"
-ENV TRANSFORMERS_CACHE="${BASE_VOLUME}/huggingface-cache/hub"
+RUN --mount=type=cache,target=/root/.cache/pip \
+    pip install --upgrade pip && \
+    pip install -r requirements.txt
 
-# Add src files (Worker Template)
-COPY src /src
+RUN rm -rf /root/.cache/pip
 
 COPY src .
 
-CMD ["python3", "/src/handler.py"]
-RUN chmod +x ./entrypoint.sh
-ENTRYPOINT ["./entrypoint.sh"]
+RUN chmod +x run.sh
+CMD ["/root/finetuning/run.sh"]
