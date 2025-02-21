@@ -63,7 +63,7 @@ def load_config_with_overrides(
         config_path = os.path.join(os.path.dirname(__file__), config_path)
 
     with open(config_path, "r") as f:
-        print(f"🛠️  Generating from template: {config_path}")
+        print(f"🛠️ Generating from template: {config_path}")
         config_dict = yaml.safe_load(f)
 
     # Get all fields from the Pydantic model
