@@ -2,7 +2,7 @@ base_model: TinyLlama/TinyLlama_v1.1
 datasets:
   - path: mhenrichsen/alpaca_2k_test
     type: alpaca
-output_dir: /workspace/data/finetuning/
+output_dir: ./outputs/mymodel
 
 sequence_len: 4096
 adapter: lora
