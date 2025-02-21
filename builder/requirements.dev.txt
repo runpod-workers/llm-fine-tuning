@@ -1,37 +1,10 @@
-# For local development
+# For local development on ARM64, install them in this order (separately)
 accelerate
 addict
-annotated-types
-axolotl
+# axolotl --no-deps
 bitsandbytes
-certifi
-charset-normalizer
 colorama
 fastcore
-filelock
-fsspec
-huggingface-hub
-idna
-Jinja2
-MarkupSafe
-mpmath
-networkx
-numpy
-packaging
-peft
-psutil
-pydantic_core
-pydantic
-PyYAML
-regex
-requests
-safetensors
-scipy
-setuptools
-sympy
-tokenizers
+# peft --no-deps
 torch
-tqdm
 transformers
-typing_extensions
-urllib3
