@@ -24,7 +24,7 @@ async def handler(job):
     args["output_dir"] = output_dir
     
     # First save args to a temporary config file
-    config_path = "/workspace/test_config.yaml"
+    config_path = "/workspace/test_config.yml"
     
         
     # Add run_name and job_id to args before saving

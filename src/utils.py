@@ -34,7 +34,7 @@ def make_valid_config(input_args):
         all_args.update(input_args)
     
     # Create updated config path
-    updated_config_path = "config/updated_config.yaml"
+    updated_config_path = "config/updated_config.yml"
     
     # Save updated config to new file
     with open(updated_config_path, "w") as f:

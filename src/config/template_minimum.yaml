@@ -1,7 +1,0 @@
-base_model: ./llama-7b-hf
-datasets:
-  - path: teknium/GPT4-LLM-Cleaned
-    type: alpaca
-micro_batch_size: 2
-gradient_accumulation_steps: 1
-learning_rate: 0.00003
