@@ -1,6 +1,6 @@
 FROM axolotlai/axolotl-cloud:main-latest
 
-WORKDIR /workspace/finetuning
+WORKDIR /workspace/fine-tuning
 
 COPY builder/requirements.txt .
 
@@ -15,4 +15,4 @@ COPY scripts/WELCOME /etc/motd
 COPY scripts .
 
 RUN chmod +x autorun.sh
-CMD ["/workspace/finetuning/autorun.sh"]
+CMD ["/workspace/fine-tuning/autorun.sh"]

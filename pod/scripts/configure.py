@@ -11,7 +11,7 @@ Example:
 [ENV VARS]
 AXOLOTL_BASE_MODEL=TinyLlama/TinyLlama_v1.1
 AXOLOTL_DATASETS='[{"path":"mhenrichsen/alpaca_2k_test","type":"alpaca"}]'
-AXOLOTL_OUTPUT_DIR=/workspace/data/finetuning/
+AXOLOTL_OUTPUT_DIR=./outputs/my_training
 
 [Usage]
 config = load_config_with_overrides("config_template.yml")

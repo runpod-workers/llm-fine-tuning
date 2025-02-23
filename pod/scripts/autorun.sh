@@ -4,7 +4,7 @@ sleep 5 # Wait for the pod to fully start
 
 if [ -n "$RUNPOD_POD_ID" ]; then
     if [ ! -L "examples" ]; then
-        echo "📦 Linking examples..."
+        echo "📦 Linking examples folder..."
         ln -s /workspace/axolotl/examples .
     fi
 
@@ -16,9 +16,8 @@ if [ -n "$RUNPOD_POD_ID" ]; then
     fi
 
     if [ ! -L "outputs" ]; then
-        echo "📦 Linking outputs to volume..."
-        mkdir -p /workspace/data/finetuning-outputs
-        ln -s /workspace/data/finetuning-outputs outputs
+        echo "📦 Linking outputs folder..."
+        ln -sf /workspace/data/axolotl-artifacts ./outputs
     fi
 else
     if [ ! -d "outputs" ]; then
@@ -37,7 +36,7 @@ if [ -n "$(env | grep '^AXOLOTL_')" ]; then
 fi
 
 # show message of the day at the Pod logs
-print /etc/motd
+cat /etc/motd
 
 # Keeps the container running
 sleep infinity

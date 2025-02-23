@@ -4,7 +4,7 @@
 
 You've successfully configured your training environment! 🎉
 
-💡 Next Steps:
+💡 Next Steps: /workspace/fine-tuning/
 1️⃣  Familiarize yourself with the examples/ and outputs/ directories.
 2️⃣  Review your `config.yaml` settings and verify its format.
 3️⃣  Start fine-tuning when you're ready with `axolotl train config.yaml`
