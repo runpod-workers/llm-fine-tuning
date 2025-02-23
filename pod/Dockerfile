@@ -10,6 +10,8 @@ RUN --mount=type=cache,target=/root/.cache/pip \
 
 RUN rm -rf /root/.cache/pip
 
+COPY scripts/WELCOME /etc/motd
+
 COPY scripts .
 
 RUN chmod +x autorun.sh

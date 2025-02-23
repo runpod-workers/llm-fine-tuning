@@ -21,18 +21,23 @@ if [ -n "$RUNPOD_POD_ID" ]; then
         ln -s /workspace/data/finetuning-outputs outputs
     fi
 else
-    mkdir outputs
+    if [ ! -d "outputs" ]; then
+        echo "📦 Creating outputs folder..."
+        mkdir outputs
+    fi
 fi
 
-echo "⌛ Preparing..."
+# check if any env var starting with "AXOLOTL_" is set
+if [ -n "$(env | grep '^AXOLOTL_')" ]; then
+    echo "⌛ Preparing..."
 
-if ! python3 configure.py --template config_template.yaml --output config.yaml; then
-    echo "❌ Configuration failed!"
-    sleep infinity  # Keeps the container running for inspection
+    if ! python3 configure.py --template config_template.yaml --output config.yaml; then
+        echo "❌ Configuration failed!"
+    fi
 fi
 
-echo "🚀 Training..."
-axolotl train config.yaml || { echo "❌ Training failed. Exiting."; sleep infinity; }
+# show message of the day at the Pod logs
+print /etc/motd
 
-echo "✅ Training complete. Keeping container alive..."
+# Keeps the container running
 sleep infinity
