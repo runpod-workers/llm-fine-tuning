@@ -17,7 +17,7 @@ if [ -n "$RUNPOD_POD_ID" ]; then
 
     if [ ! -L "outputs" ]; then
         echo "📦 Linking outputs folder..."
-        ln -sf /workspace/data/axolotl-artifacts ./outputs
+        ln -sf /workspace/data/axolotl-artifacts outputs
     fi
 else
     if [ ! -d "outputs" ]; then
