@@ -1,0 +1,10 @@
+# For local development on ARM64, install them in this order (separately)
+accelerate
+addict
+# axolotl --no-deps (see make install)
+bitsandbytes
+colorama
+fastcore
+# peft --no-deps (see make install)
+torch
+transformers

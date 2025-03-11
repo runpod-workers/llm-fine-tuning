@@ -1,0 +1,29 @@
+base_model: TinyLlama/TinyLlama_v1.1
+datasets:
+  - path: mhenrichsen/alpaca_2k_test
+    type: alpaca
+output_dir: ./outputs/mymodel
+
+sequence_len: 4096
+adapter: lora
+
+lora_r: 8
+lora_alpha: 16
+lora_dropout: 0.05
+lora_target_modules:
+  - q_proj
+  - v_proj
+  - k_proj
+  - o_proj
+  - gate_proj
+  - down_proj
+  - up_proj
+
+gradient_accumulation_steps: 1
+micro_batch_size: 16
+num_epochs: 1
+optimizer: adamw_bnb_8bit
+learning_rate: 0.0002
+load_in_8bit: true
+train_on_inputs: false
+bf16: auto
