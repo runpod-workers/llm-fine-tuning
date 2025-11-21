@@ -49,7 +49,7 @@ jobs:
           # Check if new version is actually newer
           newer_version=$(printf "%s\n%s" "$current_version" "$new_version" | sort -V | tail -n1)
           if [ "$newer_version" = "$current_version" ]; then
-              echo "No update needed. Current version ($current_version) is already >= new version ($new_version)."
+              echo "No update needed. Current version ($current_version) is newer than PyPI version ($new_version)."
               exit 0
           fi
 
