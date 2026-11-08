@@ -17,12 +17,16 @@
 # # Please refer to the base image's Dockerfile for more information before adding additional dependencies.
 # # IMPORTANT: The base image overrides the default huggingface cache location.
 # # Python dependencies
-FROM axolotlai/axolotl-cloud:main-latest
+# Pinned: main-latest moves (it switched to a pip-less uv venv and CUDA 13).
+FROM axolotlai/axolotl-cloud:0.21.1-py3.12-cu130-2.14.1
 
+# The base image's python3 is a uv-managed venv without pip. Install into it
+# with uv, and add pip so tools that run `python3 -m pip` (such as the Flash
+# runtime used by CI) work. No --upgrade: keep the base image's pinned packages.
 COPY builder/requirements.txt /requirements.txt
-RUN --mount=type=cache,target=/root/.cache/pip \
-    python3 -m pip install --upgrade pip && \
-    python3 -m pip install --upgrade -r /requirements.txt
+RUN --mount=type=cache,target=/root/.cache/uv \
+    uv pip install --python "$(command -v python3)" pip && \
+    uv pip install --python "$(command -v python3)" -r /requirements.txt
 
 # RUN pip install --upgrade torch --index-url https://download.pytorch.org/whl/cu121
     

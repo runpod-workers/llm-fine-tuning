@@ -75,7 +75,7 @@ jobs:
       # stays resolvable after that PR merges and its branch is deleted.
       # Move to @main after it merges.
       - name: Run .runpod/tests.json on a temporary endpoint
-        uses: runpod-workers/worker-github_runner/test-image@757ffa21a01a55d9fa9bbf8d1adc4f4b2135c3e9
+        uses: runpod-workers/worker-github_runner/test-image@0f06aab66170ecd93ebf2074398d174e164854ed
         with:
           image: ${{ steps.tag.outputs.image }}
           runpod-api-key: ${{ secrets.RUNPOD_API_KEY }}
