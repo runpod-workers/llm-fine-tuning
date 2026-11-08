@@ -1,8 +1,11 @@
-import yaml
-from torch.cuda import device_count
 import asyncio
-import os
-from typing import Optional, Dict, Any, AsyncGenerator
+
+
+async def _wait_ok(process, step: str) -> None:
+    """Raise if an axolotl step exited non-zero, so the job fails instead of passing."""
+    code = await process.wait()
+    if code != 0:
+        raise RuntimeError(f"axolotl {step} exited with code {code}")
 
 
 async def train(config_path: str, gpu_id: str = "0", preprocess: bool = True):
@@ -11,7 +14,7 @@ async def train(config_path: str, gpu_id: str = "0", preprocess: bool = True):
     :param config_path: Path to the YAML config file
     :param gpu_id: GPU ID to use (default: "0")
     :param preprocess: Whether to run preprocessing (default: True)
-    
+    :raises RuntimeError: if preprocessing or training exits non-zero
     """
     # First check if preprocessing is needed
     if preprocess:
@@ -22,10 +25,10 @@ async def train(config_path: str, gpu_id: str = "0", preprocess: bool = True):
             stdout=asyncio.subprocess.PIPE,
             stderr=asyncio.subprocess.STDOUT
         )
-        
+
         async for line in process.stdout:
             yield f"Preprocessing: {line.decode().strip()}"
-        await process.wait()
+        await _wait_ok(process, "preprocess")
         yield "Preprocessing completed."
     else:
         yield "Skipping preprocessing step."
@@ -37,7 +40,7 @@ async def train(config_path: str, gpu_id: str = "0", preprocess: bool = True):
         stdout=asyncio.subprocess.PIPE,
         stderr=asyncio.subprocess.STDOUT
     )
-    
+
     async for line in process.stdout:
         yield f"Training: {line.decode().strip()}"
-    await process.wait()
+    await _wait_ok(process, "train")

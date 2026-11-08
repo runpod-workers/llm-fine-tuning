@@ -1,0 +1,44 @@
+{
+  "tests": [
+    {
+      "name": "lora_two_steps",
+      "input": {
+        "run_id": "ci-lora-two-steps",
+        "args": {
+          "base_model": "HuggingFaceTB/SmolLM2-135M",
+          "datasets": [
+            {
+              "path": "mhenrichsen/alpaca_2k_test",
+              "type": "alpaca"
+            }
+          ],
+          "val_set_size": 0,
+          "sequence_len": 512,
+          "adapter": "lora",
+          "lora_r": 8,
+          "lora_alpha": 16,
+          "lora_dropout": 0.05,
+          "lora_target_linear": true,
+          "micro_batch_size": 2,
+          "gradient_accumulation_steps": 1,
+          "num_epochs": 1,
+          "max_steps": 2,
+          "optimizer": "adamw_torch",
+          "lr_scheduler": "constant",
+          "learning_rate": 0.0002,
+          "bf16": "auto",
+          "logging_steps": 1,
+          "save_strategy": "no",
+          "special_tokens": {
+            "pad_token": "<|endoftext|>"
+          }
+        }
+      },
+      "timeout": 900000
+    }
+  ],
+  "config": {
+    "gpuTypeId": "NVIDIA GeForce RTX 4090",
+    "gpuCount": 1
+  }
+}

@@ -3,17 +3,6 @@ import yaml
 
 
 
-def validate_env(logger, rp_job_id):
-    vars =  ["WANDB_API_KEY", "HF_TOKEN"]
-    
-    for key in vars:
-        if key not in os.environ:
-            logger.error(
-                f"Enviornment variable {key} not found. Please set it before running the script.", job_id=rp_job_id
-            )
-            raise ValueError(f"Enviornment variable {key} not found. Please set it before running the script.")
-
-
 def get_output_dir(run_id):
     path = f"fine-tuning/{run_id}"
     return path
