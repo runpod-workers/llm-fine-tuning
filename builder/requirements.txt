@@ -11,4 +11,3 @@ pydantic
 pydantic-settings
 hf-transfer
 setuptools
-numpy==2.0.0
