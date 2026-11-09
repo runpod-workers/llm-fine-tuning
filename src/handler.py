@@ -2,7 +2,6 @@ import runpod
 import os
 from train import train
 from utils import get_output_dir
-from huggingface_hub._login import login
 import yaml
 
 BASE_VOLUME = os.environ.get("BASE_VOLUME", "/runpod-volume")
@@ -46,19 +45,23 @@ async def handler(job):
     set_env = {
         env: credentials[key] for key, env in CREDENTIAL_ENV.items() if credentials.get(key)
     }
+    # huggingface_hub and axolotl read HF_TOKEN per process, so the env var is
+    # enough; login() would persist the token in the on-disk HF cache and leak
+    # it to later jobs on this worker.
+    previous_env = {env: os.environ.get(env) for env in set_env}
     os.environ.update(set_env)
 
     try:
-        if credentials.get("hf_token"):
-            login(token=credentials["hf_token"])
-
         logger.info("Starting Training.")
         async for result in train(CONFIG_PATH):
             logger.info(result)
         logger.info("Training Complete.")
     finally:
-        for env in set_env:
-            os.environ.pop(env, None)
+        for env, value in previous_env.items():
+            if value is None:
+                os.environ.pop(env, None)
+            else:
+                os.environ[env] = value
 
     return {"run_id": run_id, "output_dir": output_dir}
 
