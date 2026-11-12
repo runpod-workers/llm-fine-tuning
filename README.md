@@ -2,9 +2,9 @@
 
 <h1>LLM Training- Full finetune, LoRA, QLoRa etc. Llama/Mistral/Gemma</h1>
 
-## RunPod Worker Images
+## Runpod Worker Images
 
-Below is a summary of the available RunPod Worker images, categorized by image stability and CUDA version compatibility.
+Below is a summary of the available Runpod Worker images, categorized by image stability and CUDA version compatibility.
 
 | Preview Image Tag                  | Development Image Tag             |
 -----------------------------------|-----------------------------------|
